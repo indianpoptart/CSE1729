@@ -2,12 +2,14 @@
 "Nikhil Paranjape"
 "2018-09-07"
 (newline)
+"Program using 09/04/2018 exchange rates"
+(newline)
 
 (display "problem 1a\n")
 ;USD to GBP"
 (define (usd-gbp x)
   (display "£")
-  (* x 0.752))
+  (* x 0.78))
 
 "(usd-gbp $175)"
 (usd-gbp 175)
@@ -17,7 +19,7 @@
 ;GBP to Euro
 (define (gbp-euro z)
   (display "€")
-  (* z 1.192))
+  (* z 1.11))
 
 "(gbp-euro £20)"
 (gbp-euro 20)
@@ -27,7 +29,7 @@
 ;Euro to Krona
 (define (euro-krona e)
   (display "kr")
-  (* e 9.58))
+  (* e 10.53))
 
 "(euro-krona €240)"
 (euro-krona 240)

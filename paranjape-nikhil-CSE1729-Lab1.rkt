@@ -1,6 +1,7 @@
 "Lab 1"
 "Nikhil Paranjape"
 "2018-09-07"
+"License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE"
 (newline)
 "Program using 09/04/2018 exchange rates"
 (newline)

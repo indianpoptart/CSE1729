@@ -79,4 +79,14 @@
 "The difficulty with * would require 100 x characters to do hundreth(x) = x^100"
 
 (newline)
+(display "problem a\n")
+;(y-value x b m) is the function for slope: mx + b.
+;
+;X value
+;y-intercept b
+;slope m
 
+(define (y-value m x b)
+  (+ (* m x) b))
+"(y-value 2 3 4)"
+(y-value 2 3 4)

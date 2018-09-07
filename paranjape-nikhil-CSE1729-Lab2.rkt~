@@ -1,0 +1,37 @@
+"Lab 2"
+"Nikhil Paranjape"
+"2018-09-07"
+(display "problem 1a\n")
+;Defining Pi
+(define pi
+  (* 2 (acos 0)))
+
+(display "problem 1b\n")
+;Define an area of the circle function
+(define (aoc r)
+  (* pi (expt r 2)))
+"(aoc 2)"
+(aoc 2)
+
+(display "problem 1c\n")
+;Define a Surface Area of a Sphere function using aoc function
+(define (sas r)
+  (* 4 (aoc r)))
+"(sas 3)"
+(sas 3)
+
+(display "problem 1d\n")
+;Define a Volume of Sphere function using sas function
+(define (vos r)
+  (/ (* r (sas r)) 3))
+"(vos 6)" ; = 904.778
+(vos 6)
+
+(display "problem 2\n")
+;Function to compute nth value in a sequence
+(define (prob2 n)
+  (cond
+    (= n 1) (1)
+    (= n 2) (2)
+    (= n 3) (3)
+    (> n 3) (+ (- n 3) (- n 2) (- n 1))))

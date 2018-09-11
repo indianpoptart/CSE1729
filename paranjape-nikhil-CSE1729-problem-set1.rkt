@@ -154,11 +154,29 @@
 (define (root1 a b c)
   (/ (+ (- b) (sqrt (- (expt b 2) (* 4 a c)))) (* 2 a)))
 
-"(root1 1 2 4)"
-(root1 1 2 4)
+"(root1 1 2 1)"
+(root1 1 2 1)
 
 (newline)
 
 (display "problem 5b\n")
 ;(root2 a b c) that gives us the root corresponding to the minus in the ± in the quadratic √
 ;formula (that is, calculate (−b - √b2−4ac)/2a).
+(define (root2 a b c)
+  (/ (- (- b) (sqrt (- (expt b 2) (* 4 a c)))) (* 2 a)))
+
+"(root2 1 2 1)"
+(root2 1 2 1)
+
+(newline)
+
+(display "problem 5c\n")
+; Calculate the number of distinct roots to the equation ax^2 + bx + c = 0, a ≠ 0 (which will either be 1 or 2).
+
+(define (number-of-roots a b c)
+  (cond
+    ((= (- (expt b 2) (* 4 a c)) 0) 1)
+    (else
+     (positive? (number-of-roots a b c)
+                
+    

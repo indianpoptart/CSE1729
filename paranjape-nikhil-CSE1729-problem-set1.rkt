@@ -147,12 +147,18 @@
 
 (newline)
 
+;Quadratic stuff:
+(define (top a b c)
+  (sqrt(- (expt b 2) (* 4 a c))))
+(define (bottom a)
+  (* 2 a))
+
 (display "problem 5a\n")
 ;(root1 a b c) that gives us the root corresponding to the plus in the ± in the quadratic
 ;formula (that is, calculate (−b+ √b2−4ac)/2a).
 
 (define (root1 a b c)
-  (/ (+ (- b) (sqrt (- (expt b 2) (* 4 a c)))) (* 2 a)))
+  (/ (+ (- b) (top a b c)) (bottom a)))
 
 "(root1 1 2 1)"
 (root1 1 2 1)
@@ -163,7 +169,7 @@
 ;(root2 a b c) that gives us the root corresponding to the minus in the ± in the quadratic √
 ;formula (that is, calculate (−b - √b2−4ac)/2a).
 (define (root2 a b c)
-  (/ (- (- b) (sqrt (- (expt b 2) (* 4 a c)))) (* 2 a)))
+  (/ (- (- b) (top a b c)) (bottom a)))
 
 "(root2 1 2 1)"
 (root2 1 2 1)
@@ -175,8 +181,35 @@
 
 (define (number-of-roots a b c)
   (cond
-    ((= (- (expt b 2) (* 4 a c)) 0) 1)
+    ((= 0 a) (display "Variable 'a' cannot be 0."))
+    ((zero? (top a b c)) 1)
+    ((positive? (top a b c)) 2)
     (else
-     (positive? (number-of-roots a b c)
+     (display "Non-real Answer(s)"))))
+
+"(number-of-roots 1 2 1)"
+(number-of-roots 1 2 1)
+
+(newline)
+
+(display "problem 5d\n")
+;A function that evaluates to #t when the roots of ax^2 + bx + c = 0,a 6= 0 are real numbers
+
+(define (real-roots? a b c)
+  (cond
+    ((= 0 a) (display "Variable 'a' cannot be 0."))
+    ((real? (top a b c)) #t)
+    (else
+     #f)))
+
+"(real-roots? 1 2 1)"
+(real-roots? 1 2 1)
+
+"(real-roots? 1 -5 -21)"
+(real-roots? 1 -5 -21)
+"(real-roots? 1 5 21)"
+(real-roots? 1 5 21)
+    
+
                 
     

@@ -1,6 +1,10 @@
 "Lab 2"
 "Nikhil Paranjape"
-"2018-09-07"
+"2018-09-13"
+(display "License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE")
+
+(newline)
+
 (display "problem 1a\n")
 ;Defining Pi
 (define pi
@@ -66,5 +70,43 @@ pi
 
 (newline)
 
-(display "problem 4a")
-;
+(display "problem 4a\n")
+;Function that determines whether a non-negative number is even or not
+(define (even-nn-int? n)
+  (cond
+    ((= n 0) #f)
+    ((= n 1) #t)
+    (else
+     (zero?(- n (* 2 (quotient n 2)))))))
+
+"(even-nn-int? 33)"
+(even-nn-int? 33)
+"(even-nn-int? 34)"
+(even-nn-int? 34)
+
+(newline)
+
+(display "problem 4b\n")
+;Write a function even-int? that determines whether any integer is even.
+(define (even-int? n)
+  (cond
+    ((even? n) #t)
+    (else #f)))
+
+"(even-int? 2)"
+(even-int? 2)
+"(even-int? 3)"
+(even-int? 3)
+
+(newline)
+(display "problem 4c\n")
+;Finally, we define odd-int? that determines whether any integer is odd.
+(define (odd-int? n)
+  (cond
+    ((odd? n) #t)
+    (else #f)))
+
+"(odd-int? 2)"
+(odd-int? 2)
+"(odd-int? 3)"
+(odd-int? 3)

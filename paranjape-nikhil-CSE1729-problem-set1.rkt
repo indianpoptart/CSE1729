@@ -2,6 +2,7 @@
 "Nikhil Paranjape"
 "2018-09-13"
 (display "License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE")
+
 (newline)
 
 (display "problem 1a\n")
@@ -11,29 +12,34 @@
 (* (+ 22 42) (* 54 99))
 
 (newline)
+
 (display "problem 1b\n")
 "(* 99 (* 54 (+ 22 42)))\n"
 (* 99 (* 54 (+ 22 42)))
 
 (newline)
+
 (display "problem 1c\n")
 ;Rewrite 64 * 102 + 16 * (44/22)
 "(+ (* 64 102) (* 16 (/ 44 22)))\n"
 (+ (* 64 102) (* 16 (/ 44 22)))
 
 (newline)
+
 (display "problem 2a\n")
 ;Reflect
 (display "The expressions (a) & (b) have a different order of operations\n")
 (display "In scheme the formatting of each number, when it is processed and, which procedure is being run")
 
 (newline)
+
 (display "problem 2b\n")
 ;Reflect
 (display "Rules of precedence are necessary for arithmetic operations in scheme ")
 ;TODO
 
 (newline)
+
 (display "problem 3a\n")
 ;Cube function: cube(x) = x^3
 (define (cube x)
@@ -42,6 +48,7 @@
 (cube 3)
 
 (newline)
+
 (display "problem 3b\n")
 ;Q function before cube
 (define (q x)
@@ -54,6 +61,7 @@
 (p 4)
 
 (newline)
+
 (display "problem 3c\n")
 ;tenth(x) = x^10
 (define (tenth x)
@@ -62,6 +70,7 @@
 (tenth 2)
 
 (newline)
+
 (display "problem 3d\n")
 (define (hundreth x)
   (* (tenth (tenth x))))
@@ -69,16 +78,19 @@
 (hundreth 2)
 
 (newline)
+
 (display "problem 3e\n")
 ;How to test if hundreth gave correct answer
 "You can run the built in procedure expt; eg (expt 2 100)"
 
 (newline)
+
 (display "problem 3f\n")
 ;Reflect, difficulty of defining with *
 "The difficulty with * would require 100 x characters to do hundreth(x) = x^100"
 
 (newline)
+
 (display "problem 4a\n")
 ;(y-value x b m) is the function for slope: mx + b.
 ;
@@ -89,4 +101,64 @@
 (define (y-value m x b)
   (+ (* m x) b))
 "(y-value 2 3 4)"
+(display "Y-Value: ")
 (y-value 2 3 4)
+
+(newline)
+
+(display "problem 4b\n")
+;A function of four parameters (the x and y values of two points)
+;that calculates the slope of a line through those points
+;(x1,y1) and (x2,y2).
+
+(define (points-slope x1 y1 x2 y2)
+  (/ (- y2 y1) (- x2 x1)))
+
+"(points-slope 3 2 7 -4)"
+(points-slope 3 2 7 -4)
+
+(newline)
+(display "problem 4c\n")
+;A function of four parameters (the x and y values of two points)
+;that calculates the y-intercept of a line through points
+;(x1,y1) and (x2,y2).
+
+(define (points-intercept x1 y1 x2 y2)
+  (- y2 (* x2 (points-slope x1 y1 x2 y2))))
+
+"(points-intercept 3 2 7 -4)"
+(points-intercept 3 2 7 -4)
+
+(newline)
+
+(display "problem 4d\n")
+;a function of eight parameters (the x and y values of four points),
+;returns true if the line through points (x1,y1) and (x2,y2) is parallel to the line
+;through points (x3,y3) and (x4,y4). You may assume that points (x1, y1) and (x2, y2) are distinct,
+;as are (x3, y3) and (x4, y4).
+
+(define (on-parallels? x1 y1 x2 y2 x3 y3 x4 y4)
+  (cond
+    ((= (points-slope x1 y1 x2 y2) (points-slope x3 y3 x4 y4)) #t)
+    (else #f)))
+
+"(on-parallels? 2 4 6 5 2 3 6 4)"
+(on-parallels? 2 4 6 5 2 3 6 4)
+
+(newline)
+
+(display "problem 5a\n")
+;(root1 a b c) that gives us the root corresponding to the plus in the ± in the quadratic
+;formula (that is, calculate (−b+ √b2−4ac)/2a).
+
+(define (root1 a b c)
+  (/ (+ (- b) (sqrt (- (expt b 2) (* 4 a c)))) (* 2 a)))
+
+"(root1 1 2 4)"
+(root1 1 2 4)
+
+(newline)
+
+(display "problem 5b\n")
+;(root2 a b c) that gives us the root corresponding to the minus in the ± in the quadratic √
+;formula (that is, calculate (−b - √b2−4ac)/2a).

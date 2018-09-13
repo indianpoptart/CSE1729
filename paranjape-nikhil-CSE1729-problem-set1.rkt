@@ -1,7 +1,6 @@
 "Problem Set 1"
 "Nikhil Paranjape"
 "2018-09-13"
-(display "License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE")
 
 (newline)
 

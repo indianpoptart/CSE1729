@@ -1,7 +1,6 @@
 "Lab 2"
 "Nikhil Paranjape"
 "2018-09-13"
-(display "License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE")
 
 (newline)
 
@@ -90,9 +89,13 @@ pi
 ;Write a function even-int? that determines whether any integer is even.
 (define (even-int? n)
   (cond
-    ((even-nn-int? n #t) #t)
+    ((even-nn-int? n) #t)
     (else #f)))
 
+"(even-int? -3)"
+(even-int? -3)
+"(even-int? -2)"
+(even-int? -2)
 "(even-int? 2)"
 (even-int? 2)
 "(even-int? 3)"
@@ -103,10 +106,16 @@ pi
 ;Finally, we define odd-int? that determines whether any integer is odd.
 (define (odd-int? n)
   (cond
-    ((odd? n) #t)
-    (else #f)))
+    ((even-nn-int? n) #f)
+    (else #t)))
 
+"(odd-int? -3)"
+(odd-int? -3)
+"(odd-int? -2)"
+(odd-int? -2)
 "(odd-int? 2)"
 (odd-int? 2)
 "(odd-int? 3)"
 (odd-int? 3)
+
+;Nikhil Paranjape

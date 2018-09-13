@@ -1,6 +1,8 @@
-"Problem Set 1"
+"Problem Set 1 / Project 1"
 "Nikhil Paranjape"
 "2018-09-13"
+
+"License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE"
 
 (newline)
 
@@ -34,15 +36,14 @@
 
 (display "problem 2b\n")
 ;Reflect
-(display "Rules of precedence are necessary for arithmetic operations in scheme ")
-;TODO
+(display "Yes, rules of precedence are necessary for arithmetic operations in scheme ")
 
 (newline)
 
 (display "problem 3a\n")
 ;Cube function: cube(x) = x^3
 (define (cube x)
-  (expt x 3))
+  (* x x x))
 "(cube 3)"
 (cube 3)
 
@@ -51,7 +52,7 @@
 (display "problem 3b\n")
 ;Q function before cube
 (define (q x)
-  (+ 21 (expt x 5) (* 11 (expt x 4)) (* 24 (expt x 3)) (- x)))
+  (+ (* x x x x x) (* 11 (* x x x x)) (* 24 (* x x x)) (- x) 21))
 
 (define (p x)
   (cube (q x)))
@@ -80,7 +81,8 @@
 
 (display "problem 3e\n")
 ;How to test if hundreth gave correct answer
-"You can run the built in procedure expt; eg (expt 2 100)"
+"You can run the built in procedure expt; eg (expt 2 100) or,"
+"tediously write in parenthesis 100 x's after a *."
 
 (newline)
 
@@ -209,6 +211,32 @@
 "(real-roots? 1 5 21)"
 (real-roots? 1 5 21)
     
+(newline)
 
-                
-    
+(display "problem 6\n")
+;Given a 2-by-2 matrix M =a b c d, write
+;a simple function that determines when the 2×2matrix M is lone-some.
+
+;Matrix Determinant
+(define (det2x2 a b
+                c d)
+  (- (* a d) (* b c)))
+
+(define (lonesome a b c d)
+  (cond
+    ((= 1 (det2x2 a b c d)) #t)
+    ((= -1 (det2x2 a b c d)) #t)
+    (else
+     #f)))
+
+"(lonesome 1 0 0 1)"
+(lonesome 1 0 0 1)
+
+"(lonesome 0 1 1 0)"
+(lonesome 0 1 1 0)
+
+"(lonesome 1 0 5 0)"
+(lonesome 1 0 5 0)
+"(lonesome 0 3 5 0)"
+(lonesome 0 3 5 0)
+

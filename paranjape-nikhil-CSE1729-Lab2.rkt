@@ -2,6 +2,8 @@
 "Nikhil Paranjape"
 "2018-09-13"
 
+"License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE"
+
 (newline)
 
 (display "problem 1a\n")
@@ -119,3 +121,4 @@ pi
 (odd-int? 3)
 
 ;Nikhil Paranjape
+

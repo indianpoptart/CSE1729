@@ -1,6 +1,6 @@
 "Problem Set 2"
 "Nikhil Paranjape"
-"2018-09-23"
+"2018-09-30"
 
 "License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE"
 
@@ -22,6 +22,62 @@
 "(even-sum 4)"
 (even-sum 4)
 
-;TODO 1B
+"(even-sum 6)"
+(even-sum 6)
+
+(newline)
+
+(display "Problem 1b\n")
+;What does the sequence look like?
+(display "The sequence of numbers seem to follow this expression: n(n-1)")
+
+(newline)
 
 (display "Problem 1c\n")
+;Adapt the function into sum-from-to, which computes the sum of all integers from a to be
+;(sum-from-to 3 5) should evaluate to 12
+
+(define (sum-from-to a b)
+  (if (> a b)
+      0
+      (+ a (sum-from-to (+ a 1) b))))
+
+"(sum-from-to 3 5)"
+(sum-from-to 3 5)
+
+"(sum-from-to 6 10)"
+(sum-from-to 6 10)
+
+(newline)
+
+(display "Problem 2\n")
+;Function diff-prod that, given a positive integer k > 1,
+;computes (1-1/2)(1-1/3)...(1-1/k)
+
+(define (diff-prod-recurse k)
+  (if (= k 2)
+      (/ 1 2)
+      (* (- 1 (/ 1 k)) (diff-prod-recurse (- k 1)))))
+
+"(diff-prod-recurse 4)"
+(diff-prod-recurse 4)
+
+"(diff-prod-recurse 7)"
+(diff-prod-recurse 7)
+
+(define (diff-prod k)
+  (/ 1 k))
+
+"(diff-prod 25)"
+(diff-prod 25)
+
+(newline)
+
+(display "Problem 3a\n")
+;Sum of z^k, from 0 to k
+
+(define (finite-sim-of-powers z k)
+  (if (= k 0)
+      1
+      (+ (expt z k)
+         (finite-sim-of-powers z (- k 1)))))

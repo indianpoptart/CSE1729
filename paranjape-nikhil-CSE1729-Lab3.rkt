@@ -91,5 +91,45 @@
     ((even? e) (square (fastexp b (/ e 2))))
     ((odd? e) (* b (fastexp b (- e 1))))))
 
-"(fastexp 3 3)"
-(fastexp 3 3)
+"(fastexp 2 8)"
+(fastexp 2 8)
+
+(newline)
+
+(display "Problem 3b\n")
+;Show that the fastexp function is indeed faster than the power function
+;by comparing the number of multiplications that must be done for some exponent e in both functions
+(display "Fastexp does half as many multiplications as the power function\n")
+
+(newline)
+
+(display "Problem 4a\n")
+;The recurrence relation for cont-frac,
+;that is, the mathematical expression of the base case and the general case solution for cont-frac
+(define (cont-frac k)
+   (cond
+     ((= k 0) 0)
+     (cont-frac (/ (- k 1) (+ 2 (- k 1))))))
+
+"(cont-frac 5)"
+(cont-frac 5)
+
+(newline)
+
+(display "Problem 4b\n")
+;A function called new-sqrt which takes two formal parameters x and n,
+;where x is the number we wish to nd the square root of and n
+;is the number of continued fractions to compute recursively.
+
+(define (new-sqrt x n)
+  (define (cont-frac k)
+    (cond
+      ((= k 0) 0)
+      (else
+       (/ (- x 1) (+ 2 (cont-frac (- k 1)))))
+      )
+    )
+  (+ 1 (cont-frac n)))
+
+"(new-sqrt 5 25)"
+(new-sqrt 5 25)

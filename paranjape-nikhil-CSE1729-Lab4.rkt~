@@ -1,0 +1,19 @@
+"Lab 4"
+"Nikhil Paranjape"
+"2018-09-30"
+
+;Partner:
+
+(newline)
+
+(display "Problem 1\n")
+;Calculate harmonic numbers
+(define (harmonic n)
+  (cond
+    ((= 1 n) 1)
+    (else
+     (+ (/ 1 n) (harmonic (- n 1))))))
+
+"(harmonic 3)"
+(harmonic 3)
+

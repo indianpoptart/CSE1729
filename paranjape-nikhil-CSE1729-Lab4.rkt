@@ -88,5 +88,4 @@
 (convergent-series 1 7)
 
 (display "\nProblem 4a\n")
-(define (find sequence test n))
   

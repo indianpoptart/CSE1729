@@ -1,0 +1,6 @@
+(define (sum f n)
+  (if (= n 0)
+      (f 0)
+      (+ (f n) (sum f (- n 1)))))
+
+

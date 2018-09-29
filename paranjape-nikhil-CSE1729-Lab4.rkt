@@ -88,4 +88,81 @@
 (convergent-series 1 7)
 
 (display "\nProblem 4a\n")
-  
+; A function find
+
+(define (find sequence test n)
+  (define (find-helper x found)
+    (let* ((fx (sequence x))
+           (satisfies-test (test fx)))
+      (cond
+        ((and satisfies-test (= (+ found 1) n)) fx)
+        (satisfies-test (find-helper (+ x 1) (+ found 1)))
+        (else
+         (find-helper (+ x 1) found)))))
+  (find-helper 1 0))
+
+"--- BEGIN HELPER ---"
+(display "
+(define (find-helper x found)
+    (let* ((fx (sequence x))
+           (satisfies-test (test fx)))
+      (cond
+        ((and satisfies-test (= (+ found 1) n)) fx)
+        (satisfies-test (find-helper (+ x 1) (+ found 1)))
+        (else
+         (find-helper (+ x 1) found)))))
+  (find-helper 1 0))
+")
+"--- END HELPER  ---"
+(display "\nProblem 4b\n")
+; Test find program
+
+(define (even x) (= (modulo x 2) 0))
+(define (odd x) (not (even x)))
+(define (seq x) x)
+
+"(find seq even 15)"
+(find seq even 15)
+
+"(find seq odd 15)"
+(find seq odd 15)
+
+(display "\nProblem 4c\n")
+(define (fib x)
+  (cond
+    ((< x 2) 1)
+    (else
+     (+ (fib (- x 1)) (fib (- x 2))))))
+(define (divides a b) (= (modulo b a) 0))
+(define (smooth n k)
+  (and (>= k 2)
+       (or (divides k n)
+           (smooth n (- k 1)))))
+(define (isprime p)
+  (and (> p 1)
+       (not (smooth p (floor (sqrt p))))))
+
+"(find fib isprime 5)"
+(find fib isprime 5)
+
+(display "\nProblem 5a\n")
+;(f o g)(x) = (f(g(x))
+
+(define (comp f g)
+  (lambda (x)
+    (f (g x))))
+
+"(define (double x) (* 2 x))"
+(define (double x) (* 2 x))
+
+"(define (add-one x) (+ x 1))"
+(define (add-one x) (+ x 1))
+
+"(define com (comp add-one double))"
+(define com (comp add-one double))
+
+"(com 3)"
+(com 3)
+
+"((comp double add-one) 3)"
+((comp double add-one) 3)

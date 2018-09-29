@@ -81,3 +81,32 @@
       1
       (+ (expt z k)
          (finite-sim-of-powers z (- k 1)))))
+
+(display "\nProblem 3b\n")
+;Evaluates the number of terms in the infinite sum neeed to be within tol, that is,
+;The smallest k such that the difference between 1/(1-z) and (finite-sum-of-powers zk) is
+;Within tol
+
+;Helper
+(define (first-value-k-or-higher z tol k)
+  (cond
+    ((< (- (/ 1 (- 1 z)) (finite-sim-of-powers z k)) tol) k)
+    (else
+     (first-value-k-or-higher z tol (+ k 1)))))
+"---BEGIN HELPER----"
+(display "
+(define (first-value-k-or-higher z tol k)
+  (cond
+    ((< (- (/ 1 (- 1 z)) (finite-sim-of-powers z k)) tol) k)
+    (else
+     (first-value-k-or-higher z tol (+ k 1)))))
+")
+"--- END HELPER ----"
+
+(define (terms-needed z tol)
+  (first-value-k-or-higher z tol 1))
+
+
+
+"(terms-needed 5 2)"
+(terms-needed 5 2)

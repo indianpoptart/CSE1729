@@ -2,7 +2,7 @@
 "Nikhil Paranjape"
 "2018-09-29"
 
-;Partner:null(Klaus was like nah)
+;Partner:
 
 (newline)
 
@@ -40,8 +40,11 @@
 (define (harm-sum n)
   (sum harm-term n))
     
-  
+"(harm-sum 2)"
 (harm-sum 2)
+
+"(harm-sum 6)"
+(harm-sum 6)
 
 (newline)
 
@@ -56,6 +59,9 @@
 
 "(g-sum harm-term 1 4)"
 (g-sum harm-term 1 4)
+
+"(g-sum harm-term 1 7)"
+(g-sum harm-term 1 7)
 
 (display "\nProblem 3b\n")
 
@@ -78,6 +84,9 @@
 "(geom-series-np2 3)"
 (geom-series-np2 3)
 
+"(geom-series-np2 7)"
+(geom-series-np2 7)
+
 (display "\nProblem 3d\n")
 ;unnamed function using lambdas
 
@@ -86,6 +95,9 @@
 
 "(convergent-series 1 7)"
 (convergent-series 1 7)
+
+"(convergent-series 1 10)"
+(convergent-series 1 10)
 
 (display "\nProblem 4a\n")
 ; A function find
@@ -145,6 +157,14 @@
 "(find fib isprime 5)"
 (find fib isprime 5)
 
+"(find fib isprime 6)"
+(find fib isprime 6)
+
+"(find fib isprime 7)"
+(find fib isprime 7)
+
+
+
 (display "\nProblem 5a\n")
 ;(f o g)(x) = (f(g(x))
 
@@ -166,3 +186,45 @@
 
 "((comp double add-one) 3)"
 ((comp double add-one) 3)
+
+(display "\nProblem 5b\n")
+;What two functions can be composed to produce pos-cos
+
+
+(define (pos-cos x)
+  (cond
+    ((>= (cos x) 0) (cos x))
+    ((< (cos x) 0) ((comp - cos) x))))
+
+"(pos-cos -1)"
+(pos-cos -1)
+
+"(pos-cos 0)"
+(pos-cos 0)
+
+"(pos-cos 1)"
+(pos-cos 1)
+
+(display "\nProblem 5c\n")
+;Define the composition of square and sqrt
+
+(define (square x) (* x x))
+"helper:"
+(display "
+(define (square x) (* x x))\n")
+
+"((comp sqrt square) 2)"
+((comp sqrt square) 2)
+
+"((comp square sqrt) 2)"
+((comp square sqrt) 2)
+
+"((comp sqrt square) 32)"
+((comp sqrt square) 32)
+
+"((comp square sqrt) 32)"
+((comp square sqrt) 32)
+
+(display "\nIf f(x) is sqrt and g(x) is square, the output is exact\n")
+(display "However, if f(x) is square and g(x) is sqrt, the result is slightly higher than the input\n")
+(display "Yes, the order of the functions in the composition does matter")

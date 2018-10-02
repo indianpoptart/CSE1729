@@ -1,8 +1,8 @@
 "Lab 4"
 "Nikhil Paranjape"
-"2018-09-30"
+"2018-09-29"
 
-;Partner:null(Klaus was like nah)
+;Partner:
 
 (newline)
 
@@ -40,8 +40,11 @@
 (define (harm-sum n)
   (sum harm-term n))
     
-  
+"(harm-sum 2)"
 (harm-sum 2)
+
+"(harm-sum 6)"
+(harm-sum 6)
 
 (newline)
 
@@ -56,6 +59,9 @@
 
 "(g-sum harm-term 1 4)"
 (g-sum harm-term 1 4)
+
+"(g-sum harm-term 1 7)"
+(g-sum harm-term 1 7)
 
 (display "\nProblem 3b\n")
 
@@ -78,6 +84,9 @@
 "(geom-series-np2 3)"
 (geom-series-np2 3)
 
+"(geom-series-np2 7)"
+(geom-series-np2 7)
+
 (display "\nProblem 3d\n")
 ;unnamed function using lambdas
 
@@ -87,5 +96,135 @@
 "(convergent-series 1 7)"
 (convergent-series 1 7)
 
+"(convergent-series 1 10)"
+(convergent-series 1 10)
+
 (display "\nProblem 4a\n")
-  
+; A function find
+
+(define (find sequence test n)
+  (define (find-helper x found)
+    (let* ((fx (sequence x))
+           (satisfies-test (test fx)))
+      (cond
+        ((and satisfies-test (= (+ found 1) n)) fx)
+        (satisfies-test (find-helper (+ x 1) (+ found 1)))
+        (else
+         (find-helper (+ x 1) found)))))
+  (find-helper 1 0))
+
+"--- BEGIN HELPER ---"
+(display "
+(define (find-helper x found)
+    (let* ((fx (sequence x))
+           (satisfies-test (test fx)))
+      (cond
+        ((and satisfies-test (= (+ found 1) n)) fx)
+        (satisfies-test (find-helper (+ x 1) (+ found 1)))
+        (else
+         (find-helper (+ x 1) found)))))
+  (find-helper 1 0))
+")
+"--- END HELPER  ---"
+(display "\nProblem 4b\n")
+; Test find program
+
+(define (even x) (= (modulo x 2) 0))
+(define (odd x) (not (even x)))
+(define (seq x) x)
+
+"(find seq even 15)"
+(find seq even 15)
+
+"(find seq odd 15)"
+(find seq odd 15)
+
+(display "\nProblem 4c\n")
+(define (fib x)
+  (cond
+    ((< x 2) 1)
+    (else
+     (+ (fib (- x 1)) (fib (- x 2))))))
+(define (divides a b) (= (modulo b a) 0))
+(define (smooth n k)
+  (and (>= k 2)
+       (or (divides k n)
+           (smooth n (- k 1)))))
+(define (isprime p)
+  (and (> p 1)
+       (not (smooth p (floor (sqrt p))))))
+
+"(find fib isprime 5)"
+(find fib isprime 5)
+
+"(find fib isprime 6)"
+(find fib isprime 6)
+
+"(find fib isprime 7)"
+(find fib isprime 7)
+
+
+
+(display "\nProblem 5a\n")
+;(f o g)(x) = (f(g(x))
+
+(define (comp f g)
+  (lambda (x)
+    (f (g x))))
+
+"(define (double x) (* 2 x))"
+(define (double x) (* 2 x))
+
+"(define (add-one x) (+ x 1))"
+(define (add-one x) (+ x 1))
+
+"(define com (comp add-one double))"
+(define com (comp add-one double))
+
+"(com 3)"
+(com 3)
+
+"((comp double add-one) 3)"
+((comp double add-one) 3)
+
+(display "\nProblem 5b\n")
+;What two functions can be composed to produce pos-cos
+
+
+(define (pos-cos x)
+  (cond
+    ((>= (cos x) 0) (cos x))
+    ((< (cos x) 0) ((comp - cos) x))))
+
+"(pos-cos -1)"
+(pos-cos -1)
+
+"(pos-cos 0)"
+(pos-cos 0)
+
+"(pos-cos 1)"
+(pos-cos 1)
+
+(display "\nProblem 5c\n")
+;Define the composition of square and sqrt
+
+(define (square x) (* x x))
+"helper:"
+(display "
+(define (square x) (* x x))\n")
+
+"((comp sqrt square) 2)"
+((comp sqrt square) 2)
+
+"((comp square sqrt) 2)"
+((comp square sqrt) 2)
+
+"((comp sqrt square) 32)"
+((comp sqrt square) 32)
+
+"((comp square sqrt) 32)"
+((comp square sqrt) 32)
+
+(display "\nIf f(x) is sqrt and g(x) is square, the output is exact\n")
+(display "However, if f(x) is square and g(x) is sqrt, the result is slightly higher than the input\n")
+(display "Yes, the order of the functions in the composition does matter")

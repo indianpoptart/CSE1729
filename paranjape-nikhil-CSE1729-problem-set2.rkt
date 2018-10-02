@@ -81,3 +81,67 @@
       1
       (+ (expt z k)
          (finite-sim-of-powers z (- k 1)))))
+
+(display "\nProblem 3b\n")
+;Evaluates the number of terms in the infinite sum neeed to be within tol, that is,
+;The smallest k such that the difference between 1/(1-z) and (finite-sum-of-powers zk) is
+;Within tol
+
+;Helper
+(define (first-value-k-or-higher z tol k)
+  (cond
+    ((< (- (/ 1 (- 1 z)) (finite-sim-of-powers z k)) tol) k)
+    (else
+     (first-value-k-or-higher z tol (+ k 1)))))
+"---BEGIN HELPER----"
+(display "
+(define (first-value-k-or-higher z tol k)
+  (cond
+    ((< (- (/ 1 (- 1 z)) (finite-sim-of-powers z k)) tol) k)
+    (else
+     (first-value-k-or-higher z tol (+ k 1)))))
+")
+"--- END HELPER ----"
+
+(define (terms-needed z tol)
+  (first-value-k-or-higher z tol 1))
+
+"(terms-needed 5 2)"
+(terms-needed 5 2)
+
+(display "\nProblem 4a\n")
+;Returns the sum of the first K terms of the series
+
+(define (fin-alt-series k)
+  (cond
+    ((= k 0) 0.0)
+    (else
+     (+ (* -1 (expt -1 k) (/ 4 (- (* 2 k) 1))) (fin-alt-series (- k 1))))))
+
+(display "\nProblem 4b\n")
+;Sum of the first 100 terms
+"(fin-alt-series 100)"
+(fin-alt-series 100)
+
+(newline)
+
+(display "\nProblem 4c\n")
+;Sum of the first 100,000 terms
+"(fin-alt-series 10000)"
+(fin-alt-series 10000)
+
+(display "\nProblem 4d\n")
+;Calls to EXPT
+(display "There would be 100,000 calls to (expt -1 k)\n")
+
+(display "\nProblem 4e\n")
+;fin-alt-series-2
+
+;Helper
+(define (fin-alt-minify k x)
+  (cond
+    (= k 0.0)
+    (+ (* s (/ 4 (- (* 2 k) 1))) (fin-alt-minify (- k 1) (- s)))))
+
+(define (fin-alt-series-2 k)
+  

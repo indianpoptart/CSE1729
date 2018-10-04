@@ -2,8 +2,6 @@
 "Nikhil Paranjape"
 "2018-09-30"
 
-"License: https://github.com/indianpoptart/CSE1729/blob/master/LICENSE"
-
 (newline)
 
 (define (number-sum n)
@@ -116,7 +114,14 @@
   (cond
     ((= k 0) 0.0)
     (else
-     (+ (* -1 (expt -1 k) (/ 4 (- (* 2 k) 1))) (fin-alt-series (- k 1))))))
+     (+ (* -1 (expt -1 k) (/ 4.0 (- (* 2 k) 1))) (fin-alt-series (- k 1))))))
+
+"(fin-alt-series 30)"
+(fin-alt-series 30)
+
+"(fin-alt-series 50)"
+(fin-alt-series 50)
+
 
 (display "\nProblem 4b\n")
 ;Sum of the first 100 terms
@@ -137,11 +142,78 @@
 (display "\nProblem 4e\n")
 ;fin-alt-series-2
 
-;Helper
+;Helpers(displayed)
+"---BEGIN HELPER----"
+(display "
+(define (even k) (= 0 (modulo k 2)))
+
 (define (fin-alt-minify k x)
   (cond
-    (= k 0.0)
-    (+ (* s (/ 4 (- (* 2 k) 1))) (fin-alt-minify (- k 1) (- s)))))
+    ((= k 0) 0.0)
+    (else
+     (+ (* x (/ 4 (- (* 2 k) 1)))
+        (fin-alt-minify (- k 1) (- x))))))
+\n")
+"--- END HELPER ----"
+
+;helpers
+(define (even k) (= 0 (modulo k 2)))
+
+(define (fin-alt-minify k x)
+  (cond
+    ((= k 0) 0.0)
+    (else
+     (+ (* x (/ 4 (- (* 2 k) 1)))
+        (fin-alt-minify (- k 1) (- x))))))
 
 (define (fin-alt-series-2 k)
-  
+  (fin-alt-minify k
+                  (if (even k) -1 1)))
+
+"(fin-alt-series-2 100)"
+(fin-alt-series-2 100)
+
+"(fin-alt-series-2 10000)"
+(fin-alt-series-2 10000)
+
+"(fin-alt-series-2 100000)"
+(fin-alt-series-2 100000)
+
+(display "\nProblem 5a\n")
+;Finite Mystery Series
+
+(define (fact n)
+  (cond
+    ((= n 0) 1)
+    (else
+     (* n (fact (- n 1))))))
+
+(define (finite-mystery-series k)
+  (cond
+    ((= k 0) 1.0)
+    (else
+     (+ (/ 1 (fact k)) (finite-mystery-series (- k 1))))))
+
+"(finite-mystery-series 3)"
+(finite-mystery-series 3)
+
+"(finite-mystery-series 6)"
+(finite-mystery-series 6)
+
+"(finite-mystery-series 64)"
+(finite-mystery-series 64)
+
+(display "\nProblem 5b:\n")
+(display "The finite series seems to approximate e, a natural logarithms base.\n")
+
+(display "\nProblem 5c:\n")
+(display "\nIf you take the log of (fin-alt-series-2 k) and the log of (finite-mystery-series k) with large values of k\n")
+(display "it converges more quickly (= 1.0)\n")
+
+(newline)
+
+"(log (fin-alt-series-2 1000))"
+(log (fin-alt-series-2 1000))
+
+"(log (finite-mystery-series 1000))"
+(log (finite-mystery-series 1000))

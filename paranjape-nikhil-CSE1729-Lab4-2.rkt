@@ -87,5 +87,19 @@
 "(convergent-series 1 7)"
 (convergent-series 1 7)
 
+(define (is-prime x)
+  (cond
+    ((<= x 1) #f)
+    ((<= x 3) #t)
+    ((modulo x 3) #t)
+    (else
+     (+ 1 (is-prime (- x 1))))))
+
 (display "\nProblem 4a\n")
+(define (find sequence test n)
+  (cond
+    ((= sequence (harmonic n)) #f)
+    (else
+     (+ 1 1))))
+  
   

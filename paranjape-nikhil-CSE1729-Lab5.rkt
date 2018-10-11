@@ -58,4 +58,4 @@
   (cond
     ((= (my-substr s) 0) 0)
     (else
-     (
+     (1))))

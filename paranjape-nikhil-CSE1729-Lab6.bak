@@ -9,10 +9,10 @@
 (define (make-complex a b)
   (cons a b))
 
-(display "(make-complex 3 2) = ")
+"(make-complex 3 2)"
 (make-complex 3 2)
 
-(display "(make-complex 4 3) = ")
+"(make-complex 4 3)"
 (make-complex 4 3)
 
 ;Problem 1b
@@ -24,10 +24,10 @@
 (display "\n(define blop (make-complex 3 2))\n")
 (define blop (make-complex 3 2))
 
-(display "\n(real blop)               = ")
+"(real blop)"
 (real blop)
 
-(display "(real (make-complex 4 5)) = ")
+"(real (make-complex 4 5))"
 (real (make-complex 4 5))
 
 ;Problem 1c
@@ -37,7 +37,7 @@
 (define (imag x)
   (cdr x))
 
-(display "(imag blop) = ")
+"(imag blop)"
 (imag blop)
 
 ;Problem 2a
@@ -50,12 +50,12 @@
   (make-complex (+ (real x) (real y))
                 (+ (imag x) (imag y))))
 (display "blop = ") blop
-(display "bdo  = ") bdo
+(display "bdo = ") bdo
 
-(display "(complex-add blop bdo)  = ")
+"(complex-add blop bdo)"
 (complex-add blop bdo)
 
-(display "(complex-add blop blop) = ")
+"(complex-add blop blop)"
 (complex-add blop blop)
 
 ;Problem 2b
@@ -66,12 +66,12 @@
                 (- (imag x) (imag y))))
 
 (display "blop = ") blop
-(display "bdo  = ") bdo
+(display "bdo = ") bdo
 
-(display "(complex-sub blop bdo)  = ")
+"(complex-sub blop bdo)"
 (complex-sub blop bdo)
 
-(display "(complex-sub blop blop) = ")
+"(complex-sub blop blop)"
 (complex-sub blop blop)
 
 ;Problem 2c
@@ -83,27 +83,13 @@
                 (+ (* (imag x) (real y)) (* (real x) (imag y)))))
 
 (display "blop = ") blop
-(display "bdo  = ") bdo
+(display "bdo = ") bdo
 
-(display "(complex-mult blop bdo)  = ")
+(display "(complex-mult blop bdo) = ")
 (complex-mult blop bdo)
 
 (display "(complex-mult blop blop) = ")
 (complex-mult blop blop)
-
-;Problem 3
-(display "\nProblem 3\n")
-
-(define (complex-conj x)
-  (+ (expt (real x) 2) (expt (imag x) 2)))
-
-(display "(complex-conj bdo)  = ")
-(complex-conj bdo)
-
-(newline)
-
-(display "(complex-conj blop) = ")
-(complex-conj blop)
 
 ;Problem 4a
 (display "\nProblem 4a\n")
@@ -130,10 +116,8 @@
     (else
      (+ (car lst) (sum-list (cdr lst))))))
 
-(display "(sum-list (list 1 2 3 4 5))          = ")
+(display "(sum-list (list 1 2 3 4 5)) = ")
 (sum-list (list 1 2 3 4 5))
-
-(newline)
 
 (display "(sum-list (list 1 -23 0 -11 3 1002)) = ")
 (sum-list (list 1 -23 0 -11 3 1002))
@@ -152,14 +136,4 @@
 (define (consecutive-squares a b)
   (cond
     ((> a b) '())
-    (else
-     (cons (expt a 2) (consecutive-squares (+ a 1) b)))))
-
-(display "(consecutive-squares 1 10)  =\n")
-(consecutive-squares 1 10)
-
-(display "\n(consecutive-squares 4 -6)  =\n")
-(consecutive-squares 4 -6)
-
-(display "(consecutive-squares 10 15) =\n")
-(consecutive-squares 10 15)
+    

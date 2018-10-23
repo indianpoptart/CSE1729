@@ -31,3 +31,16 @@
   (abs (- (harmonic n) (log n))))
 
 (euler-approx 3)
+
+;Problem 3a
+(display "\nProblem 3a\n")
+
+;Problem 4a
+(define (golden n)
+  (cond
+    ((= n 1) 2)
+    (else
+     (+ 1.0 (/ 1.0 (golden (- n 1)))))))
+
+(display "\n(golden 6) = ")
+(golden 6)

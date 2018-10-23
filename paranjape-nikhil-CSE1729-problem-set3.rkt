@@ -44,3 +44,14 @@
 
 (display "\n(golden 6) = ")
 (golden 6)
+
+;Problem 4b
+(define (golden-approx n d k)
+  (define (iter i res)
+    (if (zero? i)
+        res
+        (iter (- i 1) (/ (n i) (+ (d i) res)))))
+  (iter (- k 1) (/ (n k) (d k))))
+
+(display "(golden-approx 1.0 1 6) = ")
+(+ 1.0 (golden-approx (lambda (x) 1) (lambda (x) 1) 6))

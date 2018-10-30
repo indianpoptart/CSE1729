@@ -1,0 +1,7 @@
+(define (insert element set)
+  (cons element set))
+
+(define (ismember? element set)
+  (cond ((null? set ) #f)
+        ((equal? element (car set)) #t)
+        (else (ismember? element (cdr set)))))

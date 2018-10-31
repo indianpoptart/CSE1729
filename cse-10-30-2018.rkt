@@ -17,4 +17,4 @@
 (define (element? x T)
   (cond ((null? T) #f)
         ((eq? x (value T)) #t)
-        ((< x (value T)) (element? x (left
+        ((< x (value T)) (element? x (left)))))

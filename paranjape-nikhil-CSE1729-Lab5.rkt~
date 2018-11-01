@@ -50,7 +50,7 @@
 
 (newline)
 
-( define (my-substr s)
+( define ( my-substr s)
    ( cond
       ((string=? s "") "")
       ( else

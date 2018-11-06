@@ -1,0 +1,5 @@
+(lambda (a)
+  (lambda (b)
+    (lambda (c)
+      (+ a b c)) (+ x 7 a))
+  (+ a 1) 3)

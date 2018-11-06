@@ -89,7 +89,9 @@
   (lambda (L1 k)
     (if (= k 1)
         (car L1)
-        (value-at-position (cdr L1 (- n 1))))))
+        (value-at-position (cdr L1) (- k 1)))))
+
+(value-at-position '(1 2 3 4 5 6) 3)
 
 ;Problem 4b
 (display "\nProblem 4b\n")
@@ -100,7 +102,40 @@
           ((zero? (modulo n d)) #f)
           (else (loop (+ d 1))))))
 
+(define consecutive-ints
+  (lambda (n m)
+    (cond
+      ((= n m) (list n))
+        (else (cons n (range ((if (< n m) + -) n 1) m))))))
+
 (define nth-prime-between
   (lambda (a b n)
     (value-at-position (filter is-prime? (consecutive-ints a b)) n)))
+
+;Problem 5a
+(display "\nProblem 5a\n")
+
+(define square
+  (lambda (x) (* x x)))
+(define (make-complex a b)
+  (cons a b))
+
+(define (real x)
+  (car x))
+
+(define (imag x)
+  (cdr x))
+
+(define complex-sqrt
+  (lambda (x)
+    (make-complex
+     (sqrt (/ (+ (real x) (sqrt (+ (square (real x)) (square (imag x))))) 2))
+     (sqrt (/ (+ (- (real x)) (sqrt (+ (square (real x)) (square (imag x))))) 2)))))
     
+(define blop (make-complex 5 6))
+
+(define bleep (make-complex 5 0))
+
+(complex-sqrt blop)
+
+(complex-sqrt bleep)

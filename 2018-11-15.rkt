@@ -17,7 +17,10 @@
 (define freq-list
   (lambda (L)
     (let* ((e (car L))
-          (n (num-occurs e L)))
-          (L (remove-all e L))
+          (n (num-occurs e L))
+          (L (remove-all e L)))
       (cons e n))))
+      
+
+(let* ((e (car L))
       

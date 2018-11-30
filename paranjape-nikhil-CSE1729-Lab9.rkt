@@ -33,31 +33,74 @@
         ((equal? x (car L)) (remove-all x (cdr L)))
         (else (cons (car L) (remove-all x (cdr L))))))
 
-(define (frequency-pair strings) (cons (car strings) (length strings)))
-
 (define freq-list
   (lambda (L)
-    (let* ((e (car L))
-          (n (num-occurs e L))
-          (L (remove-all e L)))
-      (cons e n))))
+    (let LF ((L L) (rslt '()))
+      (cond ((null? L) rslt)
+            ((assoc (car L) rslt) =>
+                                     (lambda (pair) 
+                                       (set-cdr! pair (+ 1 (cdr pair)))
+                                       (LF (cdr L) rslt)))
+            (else (LF (cdr L) 
+                           (cons (cons (car L) 1) rslt)))))))
 
+(display "(freq-list '(thats the way uh-huh uh-huh i like it uh-huh uh-huh thats the way uh-huh uh-huh i like it uh-huh uh-huh thats the way uh-huh uh-huh i like it uh-huh uh-huh thats the way uh-huh uh-huh i like it uh-huh uh-huh)) = \n")
 (freq-list '(thats the way uh-huh uh-huh i like it uh-huh uh-huh thats the way uh-huh uh-huh i like it uh-huh uh-huh thats the way uh-huh uh-huh i like it uh-huh uh-huh thats the way uh-huh uh-huh i like it uh-huh uh-huh))
 
-;Problem 3
-(display "\nProblem 3\n")
+(display "(freq-list '(row row your boat boat boat row your boat boat boat)) = ")
+(freq-list '(row row your boat boat boat row your boat boat boat)) 
+
+;Problem 3a
+(display "\nProblem 3a\n")
+
+(define (leaf? object)
+  (eq? (car object) 'leaf))
+
+(define (weight-leaf x) (caddr x))
+
+(define (weight tree)
+  (if (leaf? tree)
+      (weight-leaf tree)
+      (cadddr tree)))
+
+(display "Helper:")
+(display "
+(define (leaf? object)
+  (eq? (car object) 'leaf))
+
+(define (weight-leaf x) (caddr x))
+
+(define (weight tree)
+  (if (leaf? tree)
+      (weight-leaf tree)
+      (cadddr tree)))
+")
 
 (define (create-heap vw-pair left right)
     (list vw-pair left right))
 
+;Problem 3b
+(display "\nProblem 3b\n")
+
 (define (h-min heap)
     (car heap))
+
+(h-min '(a b c))
+
+;Problem 3c
+(display "\nProblem 3c\n")
 
 (define (left heap)
     (cadr heap))
 
+;Problem 3d
+(display "\nProblem 3d\n")
+
 (define (right heap)
     (caddr heap))
+
+;Problem 3e
+(display "\nProblem 3e\n")
 
 (define (insert vw-pair heap)
     (if (null? heap)
@@ -66,11 +109,16 @@
             (create-heap vw-pair (right heap) (insert (h-min heap) (left heap)))
             (create-heap (h-min heap) (right heap) (insert vw-pair (left heap))))))
 
+;Problem 3f
+(display "\nProblem 3f\n")
 (define (insert-list-of-pairs vw-pair-list heap)
     (if (null? vw-pair-list)
         heap
         (insert (car vw-pair-list)
                 (insert-list-of-pairs (cdr vw-pair-list) heap))))
+
+;Problem 3g
+(display "\nProblem 3g\n")
 
 (define (combine-heaps H1 H2)
     (cond ((null? H1) H2)
@@ -97,7 +145,10 @@
 
 
 (display
- ""
+ "For generating test cases, I check what the function is supposed to do, or rather, what I would like the function to do.
+If I have a function (square) that takes a variable and multiplies it by itself. Test cases can also be checked with slightly
+modified versions of given examples. Suppose a function can determine the amount of nested lists inside a list.
+You can simply put a set number of nested lists and check whether the inputted lists matches in the function."
  )
 
 ;Problem 5
@@ -108,7 +159,15 @@
 (define (pop S) (cdr S))
 (define (empty? S) (if (null? S) #t #f))
 
+
 (define get-in-order
   (lambda (heap)
-    (if
-     
+    (cond
+      ((empty? heap) heap)
+      (else
+       (cons (pop heap) (get-in-order (cdr heap)))))))
+
+(define (heapsort pair-list) (get-in-order (insert-list-of-pairs pair-list '())))
+
+;Problem 6
+(display "\nProblem 6\n")

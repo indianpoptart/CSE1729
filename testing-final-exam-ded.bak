@@ -1,0 +1,4 @@
+(define last-both
+  (lambda (l1 l2)
+    (cons (car (reverse l1))
+          (car (reverse l2)))))
